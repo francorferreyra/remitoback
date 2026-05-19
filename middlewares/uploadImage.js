@@ -1,15 +1,6 @@
 import multer from 'multer';
-import { CloudinaryStorage } from 'multer-storage-cloudinary';
 
-import cloudinary from '../config/cloudinary.js';
-
-const storage = new CloudinaryStorage({
-  cloudinary,
-  params: {
-    folder: 'remito_app',
-    allowed_formats: ['jpg', 'png', 'jpeg', 'webp'],
-  },
-});
+const storage = multer.memoryStorage();
 
 const upload = multer({
   storage,

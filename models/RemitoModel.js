@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const remitoSchema = new mongoose.Schema({
     client: {type: String, required: true},
     transport: {type: String, required: true},
-    cod: { type: Number, required: true },
+    cod: { type: String, required: true },
      image: {
     url: { type: String },
     public_id: { type: String },
