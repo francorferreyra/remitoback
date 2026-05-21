@@ -1,5 +1,6 @@
 import UserModel from '../../models/UserModel.js';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken'
 
 const createUser = async (req, res) => {
   try {
@@ -49,13 +50,21 @@ const login = async (req, res) => {
       });
     }
 
+    const token = jwt.sign(
+      { userId: user._id, role: user.role },
+      process.env.JWT_SECRET || "secreto",
+    );
+
+    user.token = token;
+    await user.save();
+
     // Login exitoso
     res.status(200).json({
       message: 'Login exitoso',
+      token,
       user: {
         id: user._id,
         email: user.email,
-        full_name: user.full_name,
       },
     });
 
