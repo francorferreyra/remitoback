@@ -5,6 +5,8 @@ import remitoCrud from '../controllers/remito/RemitoCrud.js';
 
 const router = express.Router();
 
+router.get('/', remitoCrud.getRemitoAll);
+
 router.post(
   '/',
   upload.single('image'),

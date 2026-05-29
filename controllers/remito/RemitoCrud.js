@@ -2,6 +2,7 @@ import streamifier from 'streamifier';
 
 import cloudinary from '../../config/cloudinary.js';
 import RemitoModel from '../../models/RemitoModel.js';
+import { response } from 'express';
 
 const createRemito = async (req, res) => {
   try {
@@ -62,6 +63,23 @@ const createRemito = async (req, res) => {
   }
 };
 
+const getRemitoAll = async (req, res) => {
+  try {
+
+    const remito = await RemitoModel.find();
+
+    res.status(200).json(remito);
+  } catch(error){
+     console.log(error);
+
+    res.status(500).json({
+      message: 'Error al crear remito',
+      error: error.message,
+    });
+  }
+}
+
 export default {
   createRemito,
+  getRemitoAll,
 };

@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 
 const remitoSchema = new mongoose.Schema({
-    client: {type: String, required: true},
-    transport: {type: String, required: true},
+    client: {type: String, required: true}, //mongoose.Schema.Types.ObjectId, ref: 'Client'
+    transport: {type: String, required: true}, //mongoose.Schema.Types.ObjectId, ref: 'Transport'
     cod: { type: String, required: true },
      image: {
     url: { type: String },
